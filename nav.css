@@ -1,0 +1,226 @@
+:root {
+  --maroon: #7B1F28;
+  --beige: #F9DCA8;
+  --text-light: #fff;
+  --accent-color: #F1B963;
+  --font-arabic: 'Cairo', sans-serif;
+}
+
+/* 🔧 Page & Base Fixes */
+html, body {
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+  font-family: var(--font-arabic);
+}
+
+/* 🧭 Base Navbar Styles (Mobile First) */
+nav {
+  position: fixed;
+  top: 17px;
+  z-index: 9999;
+  background: rgba(0, 0, 0, 0.192);
+  backdrop-filter: blur(8px);
+  direction: rtl;
+  padding: 0 2%;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.562);
+  border-radius: 0 0 12px 12px;
+  transition: all 0.3s ease;
+  height: 8vh;
+  /* Centering on all screens */
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+/* 🔗 Logo */
+#navLogo {
+  height: 8vh;
+}
+
+/* 📌 Menu Items & Buttons */
+nav ul {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  height: 100%;
+}
+
+nav ul li a {
+  position: relative;
+  text-decoration: none;
+  color: var(--text-light);
+  font-size: 16px;
+  font-weight: 600;
+  padding: 10px 14px;
+  transition: color 0.3s ease;
+}
+
+/* ✨ Animated Underline Hover Effect */
+nav ul li a::after {
+  content: "";
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  width: 0%;
+  height: 2px;
+  background-color: var(--accent-color);
+  transition: width 0.3s ease;
+}
+
+nav ul li a:hover::after {
+  width: 100%;
+}
+
+nav ul li a:hover {
+  color: var(--accent-color);
+}
+
+/* 🎯 Donate & Search Buttons */
+nav ul li button {
+  background-color: var(--maroon);
+  border: none;
+  color: #ffffff;
+  font-size: 15px;
+  font-weight: bold;
+  padding: 10px 18px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+nav ul li button:hover {
+  background-color: #e0a542;
+}
+
+/* 🔍 Search Input */
+#searchBox {
+  padding: 8px 12px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  font-size: 15px;
+}
+
+/* 📁 Dropdown Menus */
+nav ul li ul {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  min-width: 160px;
+  background-color: var(--maroon);
+  padding: 10px;
+  display: none;
+  flex-direction: column;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+nav ul li:hover ul {
+  display: flex;
+}
+
+nav ul li ul li a {
+  margin: 6px 0;
+  padding: 8px 12px;
+  text-align: right;
+}
+
+/* 💻 Responsive Hamburger Menu */
+.menu-toggle {
+  display: none;
+  font-size: 24px;
+  cursor: pointer;
+  color: var(--text-light);
+}
+
+/* ========================================================= */
+/* 📱 Mobile Devices (Screen width up to 768px) */
+/* This is often called the "mobile-first" approach */
+/* ========================================================= */
+@media (max-width: 768px) {
+  nav {
+    width: 96%;
+    padding: 0 2%; /* Use relative padding */
+    height: auto; /* Allow height to adjust */
+  }
+
+  .menu-toggle {
+    display: block; /* Show the hamburger icon */
+    position: absolute;
+    top: 50%;
+    right: 20px;
+    transform: translateY(-50%);
+  }
+
+  nav ul {
+    flex-direction: column; /* Stack menu items vertically */
+    align-items: flex-end; /* Align items to the right */
+    background-color: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(8px);
+    width: 100%;
+    position: absolute;
+    top: 100%;
+    right: 0;
+    height: auto;
+    display: none; /* Hide the menu by default */
+    padding-bottom: 10px;
+  }
+  
+  nav ul.active {
+    display: flex; /* Show the menu when the active class is added by JS */
+  }
+
+  /* Adjust spacing for mobile */
+  nav ul li {
+    width: 100%;
+    text-align: right;
+    margin-top: 10px;
+  }
+
+  nav ul li a {
+    font-size: 18px; /* Larger font for easier tapping */
+    width: 100%;
+    display: block; /* Make the entire line clickable */
+  }
+
+  #searchBox {
+    width: 90%;
+    margin-top: 10px;
+    margin-left: 0;
+  }
+}
+
+/* ========================================================= */
+/* 💻 Tablets and Small Desktops (769px to 1024px) */
+/* ========================================================= */
+@media (min-width: 769px) and (max-width: 1024px) {
+  nav {
+    width: 96%;
+  }
+
+  nav ul {
+    gap: 1rem; /* A little less space to fit all items */
+  }
+  
+  nav ul li a, nav ul li button {
+    font-size: 15px;
+    padding: 8px 12px;
+  }
+}
+
+
+/* ========================================================= */
+/* 🖥️ Large Desktops (1025px and up) */
+/* ========================================================= */
+@media (min-width: 1025px) {
+  nav {
+    width: 94%;
+    max-width: 1400px;
+  }
+  
+  nav ul {
+    gap: 2rem; /* Restore the original gap */
+  }
+}
